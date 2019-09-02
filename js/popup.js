@@ -33,9 +33,14 @@ function MakeQueryStr(){
 
 function onCickSeacrh(){
     var strQuery = MakeQueryStr();
-    chrome.tabs.query({currentWindow: true, active: true}, function (tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, 'hi')
-    })
+    if(strQuery === undefined){
+        return;
+    }
+
+    chrome.runtime.sendMessage({greeting: strQuery },
+        function (response) {
+            console.log('response: ' + response.response);
+        });
 };
 
 function main(){

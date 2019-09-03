@@ -1,10 +1,5 @@
 document.addEventListener('DOMContentLoaded', main);
-
-var g_bTool = true;
-
-function SwitchTool(){
-    g_bTool = !g_bTool;
-};
+window.onload = ReadSettings;
 
 function GetStrFromSearchField(){
     var field = document.getElementById('searchFieldID')
@@ -26,7 +21,26 @@ function MakeQueryStr(){
     return strQuery;
 };
 
-function onCickSeacrh(){
+function SaveSettings(){
+    var selectTools = document.getElementById('SearchToolID');
+    var str_selIndex = selectTools.selectedIndex.toString();
+
+    chrome.storage.sync.set({ mySelIndex: str_selIndex });
+};
+
+function ReadSettings(){
+    chrome.storage.sync.get('mySelIndex', function(data) {
+        var str_selIndex = data.mySelIndex;
+        if(str_selIndex === undefined){
+            SaveSettings();
+            return;
+        }
+        var selectTools = document.getElementById('SearchToolID');
+        selectTools.selectedIndex = parseInt(str_selIndex, 10);
+    });
+}
+
+function onClickSeacrh(){
     var strQuery = MakeQueryStr();
     if(strQuery === undefined){
         return false;
@@ -41,6 +55,8 @@ function onCickSeacrh(){
 
 function main(){
     var button = document.getElementById('buttonID')
-    
-    button.addEventListener('click', onCickSeacrh);       
+    var sel = document.getElementById('SearchToolID');
+
+    button.onclick = onClickSeacrh
+    sel.onchange = SaveSettings;
 };

@@ -2,6 +2,9 @@
     "name": "Fast search extension",
     "version": "1.0",
     "description": "Fast search for Google/Yandex",
+    "permissions":[
+        "storage"
+    ],
     "background": {
         "scripts": ["js/background.js"],
         "persistent": false

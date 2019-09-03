@@ -6,8 +6,17 @@
 	</head>
 	<body>
 		<div>
-			<input type="text" id="searchFieldID" size="40">
-			<input type="button", id="buttonID", value="GO">	
+			<form>
+				<select size="1" name="SearchTool" id="SearchToolID">
+					<option selected value="Google.com/search?q=">Google</option>
+					<option value="Yandex.ru/search/?lr=65&text=">Yandex</option>
+				</select>
+				<input list="popularList" autocomplete="off" placeholder="  Search by items..." type="text" id="searchFieldID" size="50">
+				<datalist id="popularList">
+					
+				</datalist>
+				<button id="buttonID">Search</button> 
+			</form>
 		</div>
 	</body>
 </html>

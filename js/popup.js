@@ -18,29 +18,25 @@ function MakeQueryStr(){
     if(strSearch === ''){
         return;
     }
+    
+    var selectTools = document.getElementById('SearchToolID');
+    var strTool = selectTools.options[selectTools.selectedIndex].value;
 
-
-    var strTool = '';
-    if(window.g_bTool === true){
-        strTool += 'google.com';
-    }
-    else{
-        strTool += 'yandex.ru'
-    }
-    var strQuery = 'https://www.' + strTool + '/search?q=' + strSearch;
+    var strQuery = 'https://www.' + strTool + strSearch;
     return strQuery;
 };
 
 function onCickSeacrh(){
     var strQuery = MakeQueryStr();
     if(strQuery === undefined){
-        return;
+        return false;
     }
 
     chrome.runtime.sendMessage({greeting: strQuery },
         function (response) {
             console.log('response: ' + response.response);
         });
+    return false;
 };
 
 function main(){

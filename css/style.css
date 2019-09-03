@@ -1,3 +1,16 @@
-button {
-    float: right;
-}
+form {
+    display:flex;
+    flex-direction:row;
+    
+    border:1px solid grey;
+    padding:5px;
+  }
+  
+  input {
+    flex-grow:4;
+    border:none;
+  }
+  
+  input:focus{
+    outline: none;
+  }

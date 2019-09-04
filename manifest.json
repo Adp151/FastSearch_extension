@@ -3,7 +3,9 @@
     "version": "1.0",
     "description": "Fast search for Google/Yandex",
     "permissions":[
-        "storage"
+        "storage",
+        "https://www.yandex.ru/",
+        "http://www.yandex.ru/"
     ],
     "background": {
         "scripts": ["js/background.js"],
